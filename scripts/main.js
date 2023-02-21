@@ -17,7 +17,10 @@ function getUrlQueries() {
   });
   return queries;
 }*/
+alert(0)
 import {getUrlQueries} from "./utils/index.js";
+alert(0)
+alert(getUrlQueries(()))
 const getJId=(event,key)=>{
   const target=event.target;
   const v=target;//[Object.keys(target)[0]];
