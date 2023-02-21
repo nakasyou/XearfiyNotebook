@@ -1,0 +1,1 @@
+export {default as getUrlQueries} from "./get-url-queries.js";
