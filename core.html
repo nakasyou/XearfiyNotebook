@@ -1,0 +1,88 @@
+<!doctype html>
+ 
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Language" content="ja">
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <title>Undefined -Xearfiy Notebook</title>
+    <meta name="description" content="Xearfiy Notebook" />
+    
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/styles/default.min.css">
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/highlight.min.js"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Sawarabi+Gothic&display=swap');
+      html body{
+        padding:0px;
+        margin:0px;
+        font-size:13px;
+        font-family: 'Sawarabi Gothic', sans-serif;
+        background-color:#f4f4f4;
+      }
+      .obj, .obj textarea{
+        position:absolute;
+        font-family: 'Sawarabi Gothic', sans-serif;
+      }
+      .area{
+        overflow-y:scroll;  
+        overflow-x:scroll;
+        border: 1px solid #000;
+        width:100vw;
+        height:90vh;
+        position:relative;
+        background-color:#fff;
+      }
+      #ctrl span{
+        font-size:1.5em
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <input id="title" placeholder="ノートブックのタイトル" value="無題のノートブック"
+      style="
+        font-size:1.5rem;
+        border:none;
+      ">
+      <span>-Xearfiy Notebook</span>
+      <a href="../notebook" style="
+        position:absolute;
+        right:1rem;
+        font-size:1.5rem;
+        background-color:#fff;
+        color:#222
+        ">←</a>
+    </div>
+    <div id="panel">
+      <span id="mode" style="background-color:#fff"></span>
+      <span id="newtxt" style="background-color:#fff"><img alt="" style="height:1.5rem;position:relative;top:5" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0ibWRpLWZvcm1hdC10ZXh0Ym94IiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTIxLDdWM0gxN1Y0SDdWM0gzVjdINFYxN0gzVjIxSDdWMjBIMTdWMjFIMjFWMTdIMjBWN0gyMU0xOCw0SDIwVjZIMThWNE00LDRINlY2SDRWNE02LDIwSDRWMThINlYyME0yMCwyMEgxOFYxOEgyMFYyME0xOCwxN0gxN1YxOEg3VjE3SDZWN0g3VjZIMTdWN0gxOFYxN00xNiw4VjEwSDEzVjE2SDExVjEwSDhWOEgxNloiIC8+PC9zdmc+" /></span>
+      <span id="picup" style="background-color:#fff"><img alt="" style="height:1.5rem;position:relative;top:5" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE4LjEuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgNjExLjkyMiA2MTEuOTIyIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA2MTEuOTIyIDYxMS45MjI7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxnPg0KCTxwYXRoIGQ9Ik0xNTkuNTEsMjU5LjM5OGMzNy43NzksMCw2OC44NzItMzEuMDk0LDY4Ljg3Mi02OC44NzJzLTMxLjA5NC02OC44NzItNjguODcyLTY4Ljg3MnMtNjguODcyLDMxLjA5NC02OC44NzIsNjguODcyDQoJCUM5MS40OTMsMjI4LjMwNSwxMjEuNzMxLDI1OS4zOTgsMTU5LjUxLDI1OS4zOTh6IE0xNTkuNTEsMTUyLjc0N2MyMC45ODgsMCwzNy43NzksMTYuNzkxLDM3Ljc3OSwzNy43NzkNCgkJcy0xNi43OTEsMzcuNzc5LTM3Ljc3OSwzNy43NzlzLTM3Ljc3OS0xNi43OTEtMzcuNzc5LTM3Ljc3OUMxMjIuNTg3LDE2OS41MzgsMTM5LjM3NywxNTIuNzQ3LDE1OS41MSwxNTIuNzQ3eiBNNTcwLjg3OSwzNi45MjQNCgkJSDQwLjI2NkMxOC40MjMsMzYuOTI0LDAsNTQuNTY5LDAsNzcuMTl2NDU3LjU0MmMwLDIxLjg0MywxNy42NDYsNDAuMjY2LDQwLjI2Niw0MC4yNjZoNTMxLjM5DQoJCWMyMS44NDMsMCw0MC4yNjYtMTcuNjQ2LDQwLjI2Ni00MC4yNjZWNzcuMTlDNjExLjE0NSw1NS4zNDcsNTkzLjQ5OSwzNi45MjQsNTcwLjg3OSwzNi45MjR6IE01ODAuMTI5LDQ3MS43NjhIMTIwLjg3Ng0KCQlsOTUuNjkxLTEyNy42MzlsNjAuNDc3LDU2LjI3OWMzLjM0MywzLjM0Myw3LjU0LDQuMTk4LDEyLjU5Myw0LjE5OGM0LjE5OC0wLjg1NSw4LjM5NS0yLjQ4NywxMC44ODMtNi42ODVsMTUyLjgyNS0yMTcuNDIyDQoJCWwxMjYuNzg0LDE0MS44NjVWNDcxLjc2OEw1ODAuMTI5LDQ3MS43Njh6IE00MC4yNjYsNjcuOTRoNTMxLjM5YzUuMDUzLDAsOS4yNSw0LjE5OCw5LjI1LDkuMjV2MTk3LjI4OUw0NjQuMjI4LDE0NC4zNTINCgkJYy0zLjM0My0zLjM0My03LjU0LTUuMDUzLTEyLjU5My01LjA1M2MtNS4wNTMsMC05LjI1LDIuNDg4LTExLjczOCw2LjY4NUwyODUuNDM5LDM2NS4xMTdsLTYwLjQ3Ny01NS4zNDcNCgkJYy0zLjM0My0zLjM0My03LjU0LTQuMTk4LTExLjczOC00LjE5OGMtNC4xOTgsMC04LjM5NSwyLjQ4Ny0xMC44ODMsNS45MDhMODIuMjQzLDQ3MC45MTNIMzEuMDE2Vjc2LjMzNQ0KCQlDMzEuMDE2LDcyLjEzNywzNS4yMTQsNjcuOTQsNDAuMjY2LDY3Ljk0eiBNNTcwLjg3OSw1NDMuOTgzSDQwLjI2NmMtNS4wNTMsMC05LjI1LTQuMTk4LTkuMjUtOS4yNXYtMzEuODcxaDU0OS4wMzV2MzEuODcxDQoJCUM1ODAuMTI5LDUzOS43ODUsNTc1LjkzMSw1NDMuOTgzLDU3MC44NzksNTQzLjk4M3oiLz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjwvc3ZnPg0K" /></span>
+      <span id="save" style="background-color:#fdd">Save</span>
+      <span id="load" style="background-color:#dfd">Load</span>
+      <span id="credit" style="background-color:#fff">Credit</span>
+    </div>
+    <div class="area">
+
+    </div>
+    <dialog id="credits" style="position:fixed">
+      <h2>Credits</h2>
+      <a href="javascript:void(0)" id="cclose" onclick="$('#credits').get(0).close()">Close</a>
+      <h3>Codes</h3>
+      <ul>
+        <li><a href="//jquery.com">jQuery</a></li>
+        <li><a href="//marked.js.org">Marked.js</a></li>
+        <li><a href="//highlightjs.org">Highlight.js</a></li>
+      </ul>
+      <h3>Icons</h3>
+      <ul>
+        <li><a href="https://icon-icons.com/ja/アイコン/トテキストボックス/137574">https://icon-icons.com/ja/アイコン/トテキストボックス/137574</a></li>
+        <li><a href="https://icon-icons.com/icon/big-picture-landscape-image/121963">https://icon-icons.com/icon/big-picture-landscape-image/121963</a></li>
+      </ul>
+    </dialog>
+    <script src="scripts/main.js"></script>
+  </body>
+</html>
