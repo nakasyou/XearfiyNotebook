@@ -1,0 +1,25 @@
+{
+  "headers": {
+    "x-amz-version-id": "cwugpzG5qEiMcslbl.jf501aCJbGemRa",
+    "x-cache": "Hit from cloudfront",
+    "content-security-policy": "default-src 'none'; style-src 'unsafe-inline'; sandbox",
+    "content-type": "application/javascript",
+    "server": "deno/gcp-us-east1",
+    "cache-control": "public, max-age=31536000, immutable",
+    "via": "http/2 edgeproxy",
+    "x-amz-cf-pop": "ATL59-P2",
+    "x-amz-cf-id": "LT8iue6IlloMVw_JFEFRTvPBq65rb0pBrU7O9VFUGeZQeiOEZQvSLw==",
+    "age": "11330479",
+    "x-amz-replication-status": "FAILED",
+    "date": "Thu, 13 Oct 2022 08:28:01 GMT",
+    "etag": "W/\"ff2122d76713ec62b25628f150ffacb8\"",
+    "vary": "Accept-Encoding, Origin",
+    "access-control-allow-origin": "*",
+    "last-modified": "Sun, 02 May 2021 11:22:29 GMT"
+  },
+  "url": "https://deno.land/x/denoflate@1.2.1/pkg/denoflate_bg.wasm.js",
+  "now": {
+    "secs_since_epoch": 1676980159,
+    "nanos_since_epoch": 286752645
+  }
+}
